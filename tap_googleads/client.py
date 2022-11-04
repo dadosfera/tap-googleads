@@ -89,12 +89,10 @@ class GoogleAdsStream(RESTStream):
             data = response.json()
             details: dict = data.get("error").get("details")
 
-            if (
-                details
-                and details[0]["errors"][0]["errorCode"]["authorizationError"]
-                == "CUSTOMER_NOT_ENABLED"
-            ):
-                raise CustomerNotEnabledError(msg)
+            if details:
+                if "errors" in details[0]:
+                    if details[0]["errors"][0]["errorCode"]["authorizationError"] == "CUSTOMER_NOT_ENABLED":
+                        raise CustomerNotEnabledError(msg)
 
         if 400 <= response.status_code < 500:
             msg = (
