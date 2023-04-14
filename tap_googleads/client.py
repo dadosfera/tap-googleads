@@ -20,7 +20,7 @@ SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 class GoogleAdsStream(RESTStream):
     """GoogleAds stream class."""
 
-    url_base = "https://googleads.googleapis.com/v11"
+    url_base = "https://googleads.googleapis.com/v12"
 
     records_jsonpath = "$[*]"  # Or override `parse_response`.
     next_page_token_jsonpath = "$.nextPageToken"  # Or override `get_next_page_token`.
@@ -93,6 +93,14 @@ class GoogleAdsStream(RESTStream):
                 if "errors" in details[0]:
                     if details[0]["errors"][0]["errorCode"]["authorizationError"] == "CUSTOMER_NOT_ENABLED":
                         raise CustomerNotEnabledError(msg)
+
+        if response.status_code == 429:
+            msg = (
+                f"{response.status_code} Client Error: "
+                f"{response.reason} for path: {self.path}."
+                f"response.json() {response.json()}:"
+            )
+            raise RetriableAPIError(msg)
 
         if 400 <= response.status_code < 500:
             msg = (
