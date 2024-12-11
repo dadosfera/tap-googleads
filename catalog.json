@@ -1,0 +1,1408 @@
+{
+  "streams": [
+    {
+      "tap_stream_id": "accessible_customers",
+      "replication_method": "FULL_TABLE",
+      "key_properties": [],
+      "schema": {
+        "properties": {
+          "resourceNames": {
+            "items": {
+              "type": [
+                "string"
+              ]
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "accessible_customers",
+      "metadata": [
+        {
+          "breadcrumb": [
+            "properties",
+            "resourceNames"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true,
+            "selected-by-default": true,
+            "table-key-properties": []
+          }
+        }
+      ]
+    },
+    {
+      "tap_stream_id": "ad_group",
+      "replication_method": "FULL_TABLE",
+      "key_properties": [
+        "_sdc_primary_key"
+      ],
+      "schema": {
+        "properties": {
+          "_sdc_primary_key": {
+            "type": "string"
+          },
+          "adGroup": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "targetingSetting": {
+                "properties": {
+                  "targetRestrictions": {
+                    "items": {
+                      "properties": {
+                        "targetingDimension": {
+                          "type": "string"
+                        },
+                        "bidOnly": {
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              },
+              "id": {
+                "type": "string"
+              },
+              "customer_id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "baseAdGroup": {
+                "type": "string"
+              },
+              "campaign": {
+                "type": "string"
+              },
+              "cpcBidMicros": {
+                "type": "string"
+              },
+              "cpmBidMicros": {
+                "type": "string"
+              },
+              "targetCpaMicros": {
+                "type": "string"
+              },
+              "cpvBidMicros": {
+                "type": "string"
+              },
+              "targetCpmMicros": {
+                "type": "string"
+              },
+              "effectiveTargetCpaMicros": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "stream": "ad_group",
+      "metadata": [
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_primary_key"
+          ],
+          "metadata": {
+            "inclusion": "automatic"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "adGroup"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true,
+            "selected-by-default": true,
+            "table-key-properties": [
+              "_sdc_primary_key"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tap_stream_id": "ad_group_performance",
+      "replication_method": "FULL_TABLE",
+      "key_properties": [
+        "_sdc_primary_key"
+      ],
+      "schema": {
+        "properties": {
+          "campaign": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "adGroup": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "metrics": {
+            "properties": {
+              "clicks": {
+                "type": "string"
+              },
+              "costMicros": {
+                "type": "string"
+              },
+              "impressions": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "segments": {
+            "properties": {
+              "date": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "_sdc_primary_key": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "stream": "ad_group_performance",
+      "metadata": [
+        {
+          "breadcrumb": [
+            "properties",
+            "campaign"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "adGroup"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "metrics"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "segments"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_primary_key"
+          ],
+          "metadata": {
+            "inclusion": "automatic"
+          }
+        },
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true,
+            "selected-by-default": true,
+            "table-key-properties": [
+              "_sdc_primary_key"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tap_stream_id": "campaign",
+      "replication_method": "FULL_TABLE",
+      "key_properties": [
+        "_sdc_primary_key"
+      ],
+      "schema": {
+        "properties": {
+          "_sdc_primary_key": {
+            "type": "string"
+          },
+          "campaign": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "stream": "campaign",
+      "metadata": [
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_primary_key"
+          ],
+          "metadata": {
+            "inclusion": "automatic"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "campaign"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true,
+            "selected-by-default": true,
+            "table-key-properties": [
+              "_sdc_primary_key"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tap_stream_id": "campaign_label",
+      "replication_method": "FULL_TABLE",
+      "key_properties": [
+        "_sdc_primary_key"
+      ],
+      "schema": {
+        "properties": {
+          "_sdc_primary_key": {
+            "type": "string"
+          },
+          "customer": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "campaign": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "label": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "campaignLabel": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "campaign": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "stream": "campaign_label",
+      "metadata": [
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_primary_key"
+          ],
+          "metadata": {
+            "inclusion": "automatic"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "customer"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "campaign"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "label"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "campaignLabel"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true,
+            "selected-by-default": true,
+            "table-key-properties": [
+              "_sdc_primary_key"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tap_stream_id": "campaign_performance",
+      "replication_method": "FULL_TABLE",
+      "key_properties": [
+        "_sdc_primary_key"
+      ],
+      "schema": {
+        "properties": {
+          "_sdc_primary_key": {
+            "type": "string"
+          },
+          "campaign": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "startDate": {
+                "type": "string"
+              },
+              "endDate": {
+                "type": "string"
+              },
+              "advertisingChannelType": {
+                "type": "string"
+              },
+              "AdvertisingChannelSubType": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "metrics": {
+            "properties": {
+              "conversions": {
+                "type": "number"
+              },
+              "clicks": {
+                "type": "string"
+              },
+              "costMicros": {
+                "type": "string"
+              },
+              "ctr": {
+                "type": "number"
+              },
+              "averageCpc": {
+                "type": "number"
+              },
+              "impressions": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "segments": {
+            "properties": {
+              "device": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "stream": "campaign_performance",
+      "metadata": [
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_primary_key"
+          ],
+          "metadata": {
+            "inclusion": "automatic"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "campaign"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "metrics"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "segments"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true,
+            "selected-by-default": true,
+            "table-key-properties": [
+              "_sdc_primary_key"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tap_stream_id": "campaign_performance_by_age_range_and_device",
+      "replication_method": "FULL_TABLE",
+      "key_properties": [
+        "_sdc_primary_key"
+      ],
+      "schema": {
+        "properties": {
+          "_sdc_primary_key": {
+            "type": "string"
+          },
+          "campaign": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "advertisingChannelType": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "adGroup": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "metrics": {
+            "properties": {
+              "clicks": {
+                "type": "string"
+              },
+              "costMicros": {
+                "type": "string"
+              },
+              "ctr": {
+                "type": "number"
+              },
+              "averageCpc": {
+                "type": "number"
+              },
+              "impressions": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "adGroupCriterion": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "ageRange": {
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "ageRangeView": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "segments": {
+            "properties": {
+              "device": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "stream": "campaign_performance_by_age_range_and_device",
+      "metadata": [
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_primary_key"
+          ],
+          "metadata": {
+            "inclusion": "automatic"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "campaign"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "adGroup"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "metrics"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "adGroupCriterion"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "ageRangeView"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "segments"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true,
+            "selected-by-default": true,
+            "table-key-properties": [
+              "_sdc_primary_key"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tap_stream_id": "campaign_performance_by_gender_and_device",
+      "replication_method": "FULL_TABLE",
+      "key_properties": [
+        "_sdc_primary_key"
+      ],
+      "schema": {
+        "properties": {
+          "_sdc_primary_key": {
+            "type": "string"
+          },
+          "campaign": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "advertisingChannelType": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "adGroup": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "metrics": {
+            "properties": {
+              "clicks": {
+                "type": "string"
+              },
+              "costMicros": {
+                "type": "string"
+              },
+              "ctr": {
+                "type": "number"
+              },
+              "averageCpc": {
+                "type": "number"
+              },
+              "impressions": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "adGroupCriterion": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "gender": {
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "genderView": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "segments": {
+            "properties": {
+              "device": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "stream": "campaign_performance_by_gender_and_device",
+      "metadata": [
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_primary_key"
+          ],
+          "metadata": {
+            "inclusion": "automatic"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "campaign"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "adGroup"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "metrics"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "adGroupCriterion"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "genderView"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "segments"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true,
+            "selected-by-default": true,
+            "table-key-properties": [
+              "_sdc_primary_key"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tap_stream_id": "campaign_performance_by_location",
+      "replication_method": "FULL_TABLE",
+      "key_properties": [
+        "_sdc_primary_key"
+      ],
+      "schema": {
+        "properties": {
+          "_sdc_primary_key": {
+            "type": "string"
+          },
+          "campaign": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "metrics": {
+            "properties": {
+              "clicks": {
+                "type": "string"
+              },
+              "costMicros": {
+                "type": "string"
+              },
+              "ctr": {
+                "type": "number"
+              },
+              "averageCpc": {
+                "type": "number"
+              },
+              "impressions": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "campaignCriterion": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "location": {
+                "properties": {
+                  "geoTargetConstant": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "segments": {
+            "properties": {
+              "date": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "locationView": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "stream": "campaign_performance_by_location",
+      "metadata": [
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_primary_key"
+          ],
+          "metadata": {
+            "inclusion": "automatic"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "campaign"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "metrics"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "campaignCriterion"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "segments"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "locationView"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true,
+            "selected-by-default": true,
+            "table-key-properties": [
+              "_sdc_primary_key"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tap_stream_id": "conversion_by_location",
+      "replication_method": "FULL_TABLE",
+      "key_properties": [
+        "_sdc_primary_key"
+      ],
+      "schema": {
+        "properties": {
+          "_sdc_primary_key": {
+            "type": "string"
+          },
+          "campaign": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "metrics": {
+            "properties": {
+              "conversions": {
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "campaignCriterion": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "location": {
+                "properties": {
+                  "geoTargetConstant": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "segments": {
+            "properties": {
+              "conversionActionCategory": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "locationView": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "stream": "conversion_by_location",
+      "metadata": [
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_primary_key"
+          ],
+          "metadata": {
+            "inclusion": "automatic"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "campaign"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "metrics"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "campaignCriterion"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "segments"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "locationView"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true,
+            "selected-by-default": true,
+            "table-key-properties": [
+              "_sdc_primary_key"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tap_stream_id": "customer_hierarchy",
+      "replication_method": "FULL_TABLE",
+      "key_properties": [
+        "_sdc_primary_key"
+      ],
+      "schema": {
+        "properties": {
+          "customerClient": {
+            "properties": {
+              "resourceName": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "clientCustomer": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "level": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "timeZone": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "manager": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "descriptiveName": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "currencyCode": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "_sdc_primary_key": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "stream": "customer_hierarchy",
+      "metadata": [
+        {
+          "breadcrumb": [
+            "properties",
+            "customerClient"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_primary_key"
+          ],
+          "metadata": {
+            "inclusion": "automatic"
+          }
+        },
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true,
+            "selected-by-default": true,
+            "table-key-properties": [
+              "_sdc_primary_key"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tap_stream_id": "geo_target_constant",
+      "replication_method": "FULL_TABLE",
+      "key_properties": [
+        "_sdc_primary_key"
+      ],
+      "schema": {
+        "properties": {
+          "_sdc_primary_key": {
+            "type": "string"
+          },
+          "geoTargetConstant": {
+            "properties": {
+              "resourceName": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "countryCode": {
+                "type": "string"
+              },
+              "targetType": {
+                "type": "string"
+              },
+              "canonicalName": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "stream": "geo_target_constant",
+      "metadata": [
+        {
+          "breadcrumb": [
+            "properties",
+            "_sdc_primary_key"
+          ],
+          "metadata": {
+            "inclusion": "automatic"
+          }
+        },
+        {
+          "breadcrumb": [
+            "properties",
+            "geoTargetConstant"
+          ],
+          "metadata": {
+            "inclusion": "available"
+          }
+        },
+        {
+          "breadcrumb": [],
+          "metadata": {
+            "inclusion": "available",
+            "selected": true,
+            "selected-by-default": true,
+            "table-key-properties": [
+              "_sdc_primary_key"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

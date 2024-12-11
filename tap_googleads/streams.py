@@ -54,7 +54,7 @@ class CustomerHierarchyStream(GoogleAdsStream):
         self, context: Optional[dict], next_page_token: Optional[Any]
     ) -> Dict[str, Any]:
         params = super().get_url_params(context, next_page_token)
-        params["pageSize"] = "10000"
+        #params["pageSize"] = "10000"
         params["query"] = self.gaql
         return params
 
@@ -125,7 +125,7 @@ class GeotargetsStream(GoogleAdsStream):
         self, context: Optional[dict], next_page_token: Optional[Any]
     ) -> Dict[str, Any]:
         params = super().get_url_params(context, next_page_token)
-        params["pageSize"] = "10000"
+        #params["pageSize"] = "10000"
         params["query"] = self.gaql
         return params
 
@@ -149,7 +149,7 @@ class ReportsStream(GoogleAdsStream):
         self, context: Optional[dict], next_page_token: Optional[Any]
     ) -> Dict[str, Any]:
         params = super().get_url_params(context, next_page_token)
-        params["pageSize"] = "10000"
+        #params["pageSize"] = "10000"
         params["query"] = self.gaql
         return params
 
