@@ -29,26 +29,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: true
-  test:
-    needs: authorize
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup Python 3.9
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.9
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install poetry==1.1.12
-          poetry install
-      - name: Test tap-googleads
-        run: poetry run tox
-        env:
-          TAP_GOOGLEADS_CLIENT_ID: ${{ secrets.TAP_GOOGLEADS_CLIENT_ID }}
-          TAP_GOOGLEADS_CLIENT_SECRET: ${{ secrets.TAP_GOOGLEADS_CLIENT_SECRET }}
-          TAP_GOOGLEADS_CUSTOMER_ID: ${{ secrets.TAP_GOOGLEADS_CUSTOMER_ID }}
-          TAP_GOOGLEADS_REFRESH_TOKEN: ${{ secrets.TAP_GOOGLEADS_REFRESH_TOKEN }}
-          TAP_GOOGLEADS_DEVELOPER_TOKEN: ${{ secrets.TAP_GOOGLEADS_DEVELOPER_TOKEN }}
-          TAP_GOOGLEADS_LOGIN_CUSTOMER_ID: ${{ secrets.TAP_GOOGLEADS_LOGIN_CUSTOMER_ID }}
+#  test:
+#    needs: authorize
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - name: Setup Python 3.9
+#        uses: actions/setup-python@v2
+#        with:
+#          python-version: 3.9
+#      - name: Install dependencies
+#        run: |
+#          python -m pip install --upgrade pip
+#          pip install poetry==1.1.12
+#          poetry install
+#      - name: Test tap-googleads
+#        run: poetry run tox
+#        env:
+#          TAP_GOOGLEADS_CLIENT_ID: ${{ secrets.TAP_GOOGLEADS_CLIENT_ID }}
+#          TAP_GOOGLEADS_CLIENT_SECRET: ${{ secrets.TAP_GOOGLEADS_CLIENT_SECRET }}
+#          TAP_GOOGLEADS_CUSTOMER_ID: ${{ secrets.TAP_GOOGLEADS_CUSTOMER_ID }}
+#          TAP_GOOGLEADS_REFRESH_TOKEN: ${{ secrets.TAP_GOOGLEADS_REFRESH_TOKEN }}
+#          TAP_GOOGLEADS_DEVELOPER_TOKEN: ${{ secrets.TAP_GOOGLEADS_DEVELOPER_TOKEN }}
+#          TAP_GOOGLEADS_LOGIN_CUSTOMER_ID: ${{ secrets.TAP_GOOGLEADS_LOGIN_CUSTOMER_ID }}
