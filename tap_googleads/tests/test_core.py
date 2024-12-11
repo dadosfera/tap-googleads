@@ -1,21 +1,15 @@
 """Tests standard tap features using the built-in SDK tests library."""
 
 import datetime
-from pathlib import Path
 
 from singer_sdk.testing import get_standard_tap_tests
-from singer_sdk.tap_base import Tap
-from singer_sdk.streams.core import Stream
-from singer_sdk.exceptions import FatalAPIError
 from tap_googleads.tap import TapGoogleAds
-import pytest
-import json
 
-import responses
-import requests
 
 SAMPLE_CONFIG = {
-    "start_date": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d"),
+    "start_date": datetime.datetime.now(datetime.timezone.utc).strftime(
+        "%Y-%m-%dT%H:%M:%SZ"
+    ),
     "client_id": "12345",
     "client_secret": "12345",
     "developer_token": "12345",
