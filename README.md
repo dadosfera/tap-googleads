@@ -1,123 +1,69 @@
-# ` tap-googleads` ![Build and Tests](https://github.com/AutoIDM/tap-googleads/actions/workflows/ci.yml/badge.svg?branch=main) [![PyPI download month](https://img.shields.io/pypi/dm/tap-googleads.svg)](https://pypi.python.org/pypi/tap-googleads/) 
+# tap_google_ads
 
-THIS IS NOT READY FOR PRODUCTION. Bearer tokens sometimes slip out to logs. Use at your own Peril :D
+This is a [Singer](https://singer.io) tap that produces JSON-formatted
+data from the Google Ads API following the [Singer
+spec](https://github.com/singer-io/getting-started/blob/master/SPEC.md).
 
-## unique tap-googleads functionality
-1. `_sdc_primary_key` is added to each stream in order to give a primary_key because google's api has nested data that doesn't play nicely without a top level primary key, so we copy the data needed for a primary key to this made up field. All other fields match the api response.   
+This tap: 
 
+- Pulls data from the [Google Ads API](https://developers.google.com/google-ads/api/docs/start).
+- Extracts the following resources from Google Ads
+  - [Accessible Bidding Strategies](https://developers.google.com/google-ads/api/reference/rpc/v10/AccessibleBiddingStrategy)
+  - [Accounts](https://developers.google.com/google-ads/api/reference/rpc/v10/Customer)
+  - [Ad Groups](https://developers.google.com/google-ads/api/reference/rpc/v10/AdGroup)
+  - [Ads](https://developers.google.com/google-ads/api/reference/rpc/v10/Ad)
+  - [Bidding Strategies](https://developers.google.com/google-ads/api/reference/rpc/v10/BiddingStrategy)
+  - [Call Details](https://developers.google.com/google-ads/api/reference/rpc/v10/CallView)
+  - [Campaigns](https://developers.google.com/google-ads/api/reference/rpc/v10/Campaign)
+  - [Campaign Budgets](https://developers.google.com/google-ads/api/reference/rpc/v10/CampaignBudget)
+  - [Campaign Labels](https://developers.google.com/google-ads/api/reference/rpc/v10/CampaignLabel)
+  - [Labels](https://developers.google.com/google-ads/api/reference/rpc/v10/Label)
+  - [Reporting](https://developers.google.com/google-ads/api/docs/reporting/overview)
+    - [Account Performance Report](https://developers.google.com/google-ads/api/fields/v10/customer)
+    - [Ad Group Performance Report](https://developers.google.com/google-ads/api/fields/v10/ad_group)
+    - [Ad Group Audience Performance Report](https://developers.google.com/google-ads/api/fields/v10/ad_group_audience_view)
+    - [Ad Performance Report](https://developers.google.com/google-ads/api/fields/v10/ad_group_ad)
+    - [Age Range Performance Report](https://developers.google.com/google-ads/api/fields/v10/age_range_view)
+    - [Campaign Performance Report](https://developers.google.com/google-ads/api/fields/v10/campaign)
+    - [Campaign Audience Performance Report](https://developers.google.com/google-ads/api/fields/v10/campaign_audience_view)
+    - [Call Metrics Call Details Report](https://developers.google.com/google-ads/api/fields/v10/call_view)
+    - [Click Performance Report](https://developers.google.com/google-ads/api/fields/v10/click_view)
+    - [Display Keyword Performance Report](https://developers.google.com/google-ads/api/fields/v10/display_keyword_view)
+    - [Display Topics Performance Report](https://developers.google.com/google-ads/api/fields/v10/topic_view)
+    - [Expanded Landing Page Report](https://developers.google.com/google-ads/api/fields/v10/expanded_landing_page_view)
+    - [Gender Performance Report](https://developers.google.com/google-ads/api/fields/v10/gender_view)
+    - [Geo Performance Report](https://developers.google.com/google-ads/api/fields/v10/geographic_view)
+    - [Keywordless Query Report](https://developers.google.com/google-ads/api/fields/v10/dynamic_search_ads_search_term_view)
+    - [Keywords Performance Report](https://developers.google.com/google-ads/api/fields/v10/keyword_view)
+    - [Landing Page Report](https://developers.google.com/google-ads/api/fields/v10/landing_page_view)
+    - [Placeholder Feed Item Report](https://developers.google.com/google-ads/api/fields/v10/feed_item)
+    - [Placeholder Report](https://developers.google.com/google-ads/api/fields/v10/feed_placeholder_view)
+    - [Placement Performance Report](https://developers.google.com/google-ads/api/fields/v10/managed_placement_view)
+    - [Search Query Performance Report](https://developers.google.com/google-ads/api/fields/v10/search_term_view)
+    - [Shopping Performance Report](https://developers.google.com/google-ads/api/fields/v10/shopping_performance_view)
+    - [User Location Performance Report](https://developers.google.com/google-ads/api/fields/v10/user_location_view)
+    - [UserLocation Performance Report](https://developers.google.com/google-ads/api/fields/v10/user_location_view)
+    - [Video Performance Report](https://developers.google.com/google-ads/api/fields/v10/video)
 
-## Capabilities
+## Bookmarking Strategy
 
-* `catalog`
-* `discover`
-* `about`
-* `stream-maps`
-
-## Settings
-
-| Setting          | Required | Default | Description |
-|:-----------------|:--------:|:-------:|:------------|
-| client_id        | True     | None    | ClientID from Oauth Setup |
-| client_secret    | True     | None    | ClientSecret from Oauth Setup |
-| developer_token  | True     | None    | Developer Token from Google Ads Console |
-| refresh_token    | True     | None    | Refresh Token from Oauth dance |
-| customer_id      | True     | None    | Customer ID from Google Ads Console, note this should be the top level client. This tap will pull all subaccounts |
-| login_customer_id| True     | None    | Customer ID that has access to the customer_id, note that they can be the same, but they don't have to be as this could be a Manager account |
-| start_date       | True     | 2022-03-24T00:00:00Z (Today-7d) | Date to start our search from, applies to Streams where there is a filter date. Note that Google responds to Data in buckets of 1 Day increments |
-| end_date         | True     | 2022-03-31T00:00:00Z (Today) | Date to end our search on, applies to Streams where there is a filter date. Note that the query is BETWEEN start_date AND end_date |
-
-### Get refresh token
-1. GET https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=client_id&redirect_uri=http://127.0.0.1&scope=https://www.googleapis.com/auth/adwords&state=autoidm&access_type=offline&prompt=select_account&include_granted_scopes=true
-1. POST https://www.googleapis.com/oauth2/v4/token?code={code}&client_id={client_id}&client_secret={client_secret}&redirect_uri=http://127.0.0.1&grant_type=authorization_code
-1. POST https://www.googleapis.com/oauth2/v4/token?refresh_token={refres_token}&client_id={client_id}&client_secret={client_secret]&grant_type=refresh_token
-
-
-## Installation
-
-```bash
-pipx install tap-googleads
-```
+The Google Ads API supports the `start_date` and `end_date` parameters that limits the records which filters the analytics records in the given time period.
 
 ## Configuration
 
-### Accepted Config Options
+This tap requires a `config.json` which specifies details regarding [OAuth 2.0](https://developers.google.com/google-ads/api/docs/oauth/overview) authentication and a cutoff date for syncing historical data. See [config.sample.json](config.sample.json) for an example.
 
-
-A full list of supported settings and capabilities for this
-tap is available by running:
+To run the discover mode of `tap-google-ads` with the configuration file, use this command:
 
 ```bash
-tap-googleads --about
+$ tap-google-ads -c my-config.json -d
 ```
 
-## Usage
-
-You can easily run `tap-googleads` by itself or in a pipeline using [Meltano](https://meltano.com/).
-
-### Executing the Tap Directly
+To run the sync mode of `tap-google-ads` with the catalog file, use the command:
 
 ```bash
-tap-googleads --version
-tap-googleads --help
-tap-googleads --config CONFIG --discover > ./catalog.json
+$ tap-google-ads -c my-config.json --catalog catalog.json
 ```
+---
 
-## Developer Resources
-
-- [ ] `Developer TODO:` As a first step, scan the entire project for the text "`TODO:`" and complete any recommended steps, deleting the "TODO" references once completed.
-
-### Initialize your Development Environment
-
-```bash
-pipx install poetry
-poetry install
-```
-
-### Create and Run Tests
-
-Create tests within the `tap_googleads/tests` subfolder and
-  then run:
-
-```bash
-poetry run pytest
-```
-
-You can also test the `tap-googleads` CLI interface directly using `poetry run`:
-
-```bash
-poetry run tap-googleads --help
-```
-
-### Testing with [Meltano](https://www.meltano.com)
-
-_**Note:** This tap will work in any Singer environment and does not require Meltano.
-Examples here are for convenience and to streamline end-to-end orchestration scenarios._
-
-Your project comes with a custom `meltano.yml` project file already created. Open the `meltano.yml` and follow any _"TODO"_ items listed in
-the file.
-
-Next, install Meltano (if you haven't already) and any needed plugins:
-
-```bash
-# Install meltano
-pipx install meltano
-# Initialize meltano within this directory
-cd tap-googleads
-meltano install
-```
-
-Now you can test and orchestrate using Meltano:
-
-```bash
-# Test invocation:
-meltano invoke tap-googleads --version
-# OR run a test `elt` pipeline:
-meltano elt tap-googleads target-jsonl
-```
-
-### SDK Dev Guide
-
-See the [dev guide](https://sdk.meltano.com/en/latest/dev_guide.html) for more instructions on how to use the SDK to 
-develop your own taps and targets.
-
-Built with the [Meltano SDK](https://sdk.meltano.com) for Singer Taps and Targets.
+Copyright &copy; 2021 Stitch
